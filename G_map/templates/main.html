@@ -56,6 +56,11 @@
 		/>
 		<link rel="stylesheet" type="text/css" href="/static/vendors/styles/style.css" />
 
+		<!-- ck editor -->
+		<script type="text/javascript" src="/static/ckeditor/ckeditor/ckeditor.js"></script>
+		<script type="text/javascript" src="/static/ckeditor/ckeditor-init.js"></script>
+
+
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script
 			async
@@ -64,6 +69,8 @@
         <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js">
 
         </script>
+		<!-- jquery cdn -->
+		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
@@ -704,11 +711,21 @@
         
 		<div class="mobile-menu-overlay"></div>
         <div class="main-container">
-        {% block content %}
+			<div class="pd-ltr-20 xs-pd-20-10">
+				{% block content %}
         
-		{% endblock content %}
-        </div>
+				{% endblock content %}
+				<div class="footer-wrap pd-20 mb-20 card-box">
+					DeskApp - Bootstrap 4 Admin Template By
+					<a href="https://github.com/dropways" target="_blank"
+						>Ankit Hingarajiya</a
+					>
+				</div>
+			</div>
+        
 		
+		
+        </div>
 		
 		
 		<!-- js -->
@@ -730,8 +747,13 @@
 		<script src="/static/src/plugins/datatables/js/buttons.flash.min.js"></script>
 		<script src="/static/src/plugins/datatables/js/pdfmake.min.js"></script>
 		<script src="/static/src/plugins/datatables/js/vfs_fonts.js"></script>
+		<!-- add sweet alert js & css in footer -->
+		<script src="/static/src/plugins/sweetalert2/sweetalert2.all.js"></script>
+		<script src="/static/src/plugins/sweetalert2/sweet-alert.init.js"></script>
 		<!-- Datatable Setting js -->
 		<script src="/static/vendors/scripts/datatable-setting.js"></script>
+		<!-- toastr -->
+		<link rel="stylesheet" href="/static/vendors/toastr/toastr.min.css">
 		<!-- Google Tag Manager (noscript) -->
 		<noscript
 			><iframe
@@ -742,5 +764,45 @@
 			></iframe
 		></noscript>
 		<!-- End Google Tag Manager (noscript) -->
+		<script>
+			toastr.options = {
+			  "closeButton": false,
+			  "debug": true,
+			  "newestOnTop": false,
+			  "progressBar": true,
+			  "positionClass": "toast-bottom-right",
+			  "preventDuplicates": false,
+			  "onclick": null,
+			  "showDuration": "1000",
+			  "hideDuration": "1000",
+			  "timeOut": "5000",
+			  "extendedTimeOut": "1000",
+			  "showEasing": "swing",
+			  "hideEasing": "linear",
+			  "showMethod": "slideDown",
+			  "hideMethod": "slideUp"
+			};
+			"{% for message in messages %}"
+			alert('{{message}}',"ssss")
+			  if ("{{ message.tags }}" === "success") {
+				toastr.success("{{ message|safe }}")
+			  }
+			  if ("{{ message.tags }}" === "error") {
+				toastr.error("{{ message }}")
+			  }
+			  if ("{{ message.tags }}" === "info") {
+				toastr.info("{{ message|safe }}")
+			  }
+			  if ("{{ message.tags }}" === "warning") {
+				toastr.warning("{{ message|safe }}")
+			  }
+			"{% endfor %}"
+		
+		
+		
+		
+			</script>
+		
+		
 	</body>
 </html>

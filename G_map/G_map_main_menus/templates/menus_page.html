@@ -2,7 +2,7 @@
 {% block title %}menus{% endblock title %}
 {% block content %}
 <style>
-    .card-box{
+    .card_menu_page{
         height: 150px;
         text-align: center;
     }
@@ -13,47 +13,47 @@
     
 <div class="row pl-5 pr-5">
     <div class="col-sm-3">
-        <div class="card-box  widget-style1 mb-20">
+        <div class="card-box  widget-style1 mb-20 card_menu_page" >
             <a href="{% url 'roles_view' %}" class="btn btn-outline-secondary">Roles</a>
         </div>
-        <div class="card-box height-100-p widget-style1 mb-20">
-            <a href="" class="btn btn-outline-secondary">Roles</a>
+        <div class="card-box  widget-style1 mb-20 card_menu_page">
+            <a href="{% url 'service_type' %}" class="btn btn-outline-secondary">Service Type</a>
         </div>
-        <div class="card-box height-100-p widget-style1 mb-20">
-            <a href="" class="btn btn-outline-secondary">Roles</a>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="card-box height-100-p widget-style1 mb-20">
-            <a href="" class="btn btn-outline-secondary">Roles</a>
-        </div>
-        <div class="card-box height-100-p widget-style1 mb-20">
-            <a href="" class="btn btn-outline-secondary">Roles</a>
-        </div>
-        <div class="card-box height-100-p widget-style1 mb-20">
-            <a href="" class="btn btn-outline-secondary">Roles</a>
+        <div class="card-box  widget-style1 mb-20 card_menu_page">
+            <a href="{% url 'designation' %}" class="btn btn-outline-secondary">Designation</a>
         </div>
     </div>
     <div class="col-sm-3">
-        <div class="card-box height-100-p widget-style1 mb-20">
-            <a href="" class="btn btn-outline-secondary">Roles</a>
+        <div class="card-box  widget-style1 mb-20 card_menu_page">
+            <a href="" class="btn btn-outline-secondary">Item Master</a>
         </div>
-        <div class="card-box height-100-p widget-style1 mb-20">
-            <a href="" class="btn btn-outline-secondary">Roles</a>
+        <div class="card-box  widget-style1 mb-20 card_menu_page">
+            <a href="" class="btn btn-outline-secondary">Workshop</a>
         </div>
-        <div class="card-box height-100-p widget-style1 mb-20">
-            <a href="" class="btn btn-outline-secondary">Roles</a>
+        <div class="card-box  widget-style1 mb-20 card_menu_page">
+            <a href="" class="btn btn-outline-secondary">Holiday</a>
         </div>
     </div>
     <div class="col-sm-3">
-        <div class="card-box height-100-p widget-style1 mb-20">
-            <a href="" class="btn btn-outline-secondary">Roles</a>
+        <div class="card-box  widget-style1 mb-20 card_menu_page">
+            <a href="" class="btn btn-outline-secondary">Questionnair</a>
         </div>
-        <div class="card-box height-100-p widget-style1 mb-20">
-            <a href="" class="btn btn-outline-secondary">Roles</a>
+        <div class="card-box  widget-style1 mb-20 card_menu_page">
+            <a href="" class="btn btn-outline-secondary">Company</a>
         </div>
-        <div class="card-box height-100-p widget-style1 mb-20">
-            <a href="" class="btn btn-outline-secondary">Roles</a>
+        <div class="card-box  widget-style1 mb-20 card_menu_page">
+            <a href="{% url 'department' %}" class="btn btn-outline-secondary">Department</a>
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <div class="card-box  widget-style1 mb-20 card_menu_page">
+            <a href="" class="btn btn-outline-secondary">Vendor</a>
+        </div>
+        <div class="card-box  widget-style1 mb-20 card_menu_page">
+            <a href="" class="btn btn-outline-secondary">Vehicle</a>
+        </div>
+        <div class="card-box  widget-style1 mb-20 card_menu_page">
+            <a href="" class="btn btn-outline-secondary">Allowance</a>
         </div>
     </div>
 </div>

@@ -1,0 +1,197 @@
+{% extends 'main.html' %}
+{% block title %}Department{% endblock title %}
+{% block content %}
+
+<div class="min-height-200px">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="title">
+                    <h4>Department</h4>
+                </div>
+                <nav aria-label="breadcrumb" role="navigation">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{{ request.META.HTTP_REFERER }}">Back</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Department
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="col-md-6 col-sm-12 text-right">
+                <a href="{% url 'add_department' %}" class="btn btn-primary btn-sm">Add department</a>
+            </div>
+        </div>
+    </div>
+
+        
+<!-- Export Datatable start -->
+<div class="card-box mb-30">
+<div class="pd-20">
+
+</div>
+<div class="pb-20">
+    <table
+        class="table hover multiple-select-row data-table-export nowrap"
+    >
+        <thead>
+            <tr>
+                <th class="table-plus datatable-nosort" style="width: 10%;">Sl no</th>
+                <th style="width: 30%;">Department</th>
+                <th style="width: 20%;">Service Type</th>
+                <th style="width: 10%;">Status</th>
+                <th style="width: 30%;text-align: center;">Actions</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data %}
+            <tr>
+                <td class="table-plus" style="width: 10%;">{{forloop.counter}}</td>
+                <td style="width: 30%;">{{i.department_name}}</td>
+                <td style="width: 20%;">{{i.service_type}}</td>
+                <td style="width: 10%;"><span class="badge badge-{% if i.status == 'Active' %}success{% else %}danger{% endif %}">{{i.status}}</span></td>
+                <td style="width: 30%;">
+                    {% if i.status == 'Active' %}
+                    <button type="button" class="btn btn-outline-secondary btn-sm disable_btn" style="float: right;" data-toggle="modal" data-id="{{i.id}}"
+                    data-target="#confirmation-modal-disable">Disable</button>
+                    {% else %}
+                    <button type="button" class="btn btn-outline-secondary btn-sm enable_btn" style="float: right;" data-toggle="modal" data-id="{{i.id}}"
+                    data-target="#confirmation-modal-enable">Enable</button>
+                    {% endif %}
+                    <a href="{% url 'edit_department' i.slug_field %}" class="btn btn-outline-secondary btn-sm mr-2" style="float: right;">Edit</a>
+                    <!-- <a href="" class="btn btn-secondary btn-sm mr-2" style="float: right;">view</a> -->
+                    
+                </td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+<!-- Export Datatable End -->
+</div>
+
+
+
+<div
+    class="modal fade"
+    id="confirmation-modal-enable"
+    tabindex="-1"
+    role="dialog"
+    aria-hidden="true"
+>
+    <div
+        class="modal-dialog modal-dialog-centered"
+        role="document"
+    >
+        <div class="modal-content">
+            <form method="post" action="{% url 'actions_department' %}">
+                {% csrf_token %}
+                <div class="modal-body text-center font-18">
+                    <h4 class="padding-top-30 mb-30 weight-500">
+                        Are you sure you want to enable?
+                        <input hidden type="text" name="disable_data" id="enable_divcont">
+                    </h4>
+                    <div
+                        class="padding-bottom-30 row"
+                        style="max-width: 170px; margin: 0 auto"
+                    >
+                        <div class="col-6">
+                            <button
+                                type="button"
+                                class="btn btn-secondary border-radius-100 btn-block confirmation-btn"
+                                data-dismiss="modal"
+                            >
+                                <i class="fa fa-times"></i>
+                            </button>
+                            NO
+                        </div>
+                        <div class="col-6">
+                            <button
+                                type="submit"
+                                class="btn btn-primary border-radius-100 btn-block confirmation-btn"
+                                
+                            >
+                                <i class="fa fa-check"></i>
+                            </button>
+                            YES
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<div
+    class="modal fade"
+    id="confirmation-modal-disable"
+    tabindex="-1"
+    role="dialog"
+    aria-hidden="true"
+>
+    <div
+        class="modal-dialog modal-dialog-centered"
+        role="document"
+    >
+        <div class="modal-content">
+            <form method="post" action="{% url 'actions_department' %}">
+                {% csrf_token %}
+                <div class="modal-body text-center font-18">
+                    <h4 class="padding-top-30 mb-30 weight-500">
+                        Are you sure you want to disable?
+                        <input hidden type="text" id="disable_divcont" name="disable_data">
+                    </h4>
+                    <div
+                        class="padding-bottom-30 row"
+                        style="max-width: 170px; margin: 0 auto"
+                    >
+                        <div class="col-6">
+                            <button
+                                type="button"
+                                class="btn btn-secondary border-radius-100 btn-block confirmation-btn"
+                                data-dismiss="modal"
+                            >
+                                <i class="fa fa-times"></i>
+                            </button>
+                            NO
+                        </div>
+                        <div class="col-6">
+                            <button
+                                type="submit"
+                                class="btn btn-primary border-radius-100 btn-block confirmation-btn"
+                                
+                            >
+                                <i class="fa fa-check"></i>
+                            </button>
+                            YES
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+      
+            
+
+<script>
+    $('.disable_btn').click(function(){
+        var x_id = $(this).attr('data-id')
+        $('#disable_divcont').val(x_id)
+    })
+    $('.enable_btn').click(function(){
+        var x_id = $(this).attr('data-id')
+        $('#enable_divcont').val(x_id)
+    })
+</script>
+{% endblock content %}

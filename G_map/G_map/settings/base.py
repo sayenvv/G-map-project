@@ -41,7 +41,10 @@ INSTALLED_APPS = [
 
     # project apps
     'G_map_main_menus',
-    'G_map_registration'
+    'G_map_registration',
+
+    # 3rd party
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
@@ -129,3 +132,11 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# ckeditor settings
+CKEDITOR_CONFIGS = {
+    'default': {
+        'height': '100%', 
+        'width': '100%', 
+    },
+}

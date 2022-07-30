@@ -1,0 +1,76 @@
+{% extends 'main.html' %}
+{% block title %}Add Department{% endblock title %}
+{% block content %}
+
+<div class="min-height-200px">
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="title">
+                    <h4>Service Type</h4>
+                </div>
+                <nav aria-label="breadcrumb" role="navigation">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{{ request.META.HTTP_REFERER }}">Back</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Add service type
+                        </li>
+                    </ol>
+                </nav>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- form start -->
+    <div class="card pd-20 card-box mb-30">
+        
+        <form method="post">
+            {% csrf_token %}
+            <div class="card-header" style="background-color: #fff;">
+                <div class="card-title">
+                    
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{form.department_name.label}}</label>
+                            {{form.department_name}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{form.service_type.label}}</label><br>
+                            {{form.service_type}}
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{form.status.label}}</label>
+                            {{form.status}}
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        
+            <div class="card-footer" style="background-color:#fff;">
+                <div class="form-group" >
+                    <button type="submit" class="btn btn-secondary btn-sm" style="float: right;">Submit</button>
+                </div>
+                
+            </div>
+        </form>
+    </div>
+    <!-- form ends -->
+</div>
+{% endblock content %}

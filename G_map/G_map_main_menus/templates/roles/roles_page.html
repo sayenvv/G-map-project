@@ -1,7 +1,7 @@
 {% extends 'main.html' %}
 {% block title %}Roles{% endblock title %}
 {% block content %}
-<div class="pd-ltr-20 xs-pd-20-10">
+
     <div class="min-height-200px">
         <div class="page-header">
             <div class="row">
@@ -12,7 +12,7 @@
                     <nav aria-label="breadcrumb" role="navigation">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item">
-                                <a href="{{ request.META.HTTP_REFERER }}">Menu</a>
+                                <a href="{{ request.META.HTTP_REFERER }}">Back</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">
                                 Roles
@@ -100,14 +100,14 @@
                             <td style="width: 20%;"><span class="badge badge-{% if i.status == 'Active' %}success{% else %}danger{% endif %}">{{i.status}}</span></td>
                             <td style="width: 40%;">
                                {% if i.status == 'Active' %}
-                                <button type="button" class="btn btn-outline-secondary btn-sm" style="float: right;" data-toggle="modal"
+                                <button type="button" class="btn btn-outline-secondary btn-sm disable_btn" style="float: right;" data-toggle="modal" data-id="{{i.id}}"
                                 data-target="#confirmation-modal-disable">Disable</button>
                                {% else %}
-                                <button type="button" class="btn btn-outline-secondary btn-sm" style="float: right;" data-toggle="modal"
+                                <button type="button" class="btn btn-outline-secondary btn-sm enable_btn" style="float: right;" data-toggle="modal" data-id="{{i.id}}"
                                 data-target="#confirmation-modal-enable">Enable</button>
                               {% endif %}
-                                <a href="{% url 'edit_roles' i.pk %}" class="btn btn-outline-secondary btn-sm mr-2" style="float: right;">Edit</a>
-                                <a href="" class="btn btn-outline-secondary btn-sm mr-2" style="float: right;">Set permission</a>
+                                <a href="{% url 'edit_roles' i.slug_field %}" class="btn btn-outline-secondary btn-sm mr-2" style="float: right;">Edit</a>
+                                <a href="" class="btn btn-secondary btn-sm mr-2" style="float: right;">Set permission</a>
                                 
                             </td>
                             
@@ -134,36 +134,40 @@
                     role="document"
                 >
                     <div class="modal-content">
-                        <div class="modal-body text-center font-18">
-                            <h4 class="padding-top-30 mb-30 weight-500">
-                                Are you sure you want to enable?
-                            </h4>
-                            <div
-                                class="padding-bottom-30 row"
-                                style="max-width: 170px; margin: 0 auto"
-                            >
-                                <div class="col-6">
-                                    <button
-                                        type="button"
-                                        class="btn btn-secondary border-radius-100 btn-block confirmation-btn"
-                                        data-dismiss="modal"
-                                    >
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                    NO
-                                </div>
-                                <div class="col-6">
-                                    <button
-                                        type="button"
-                                        class="btn btn-primary border-radius-100 btn-block confirmation-btn"
-                                        data-dismiss="modal"
-                                    >
-                                        <i class="fa fa-check"></i>
-                                    </button>
-                                    YES
+                        <form method="post" action="{% url 'actions_roles' %}">
+                            {% csrf_token %}
+                            <div class="modal-body text-center font-18">
+                                <h4 class="padding-top-30 mb-30 weight-500">
+                                    Are you sure you want to enable?
+                                    <input hidden type="text" name="disable_data" id="enable_divcont">
+                                </h4>
+                                <div
+                                    class="padding-bottom-30 row"
+                                    style="max-width: 170px; margin: 0 auto"
+                                >
+                                    <div class="col-6">
+                                        <button
+                                            type="button"
+                                            class="btn btn-secondary border-radius-100 btn-block confirmation-btn"
+                                            data-dismiss="modal"
+                                        >
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                        NO
+                                    </div>
+                                    <div class="col-6">
+                                        <button
+                                            type="submit"
+                                            class="btn btn-primary border-radius-100 btn-block confirmation-btn"
+                                            
+                                        >
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                        YES
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -185,46 +189,54 @@
                     role="document"
                 >
                     <div class="modal-content">
-                        <div class="modal-body text-center font-18">
-                            <h4 class="padding-top-30 mb-30 weight-500">
-                                Are you sure you want to disable?
-                            </h4>
-                            <div
-                                class="padding-bottom-30 row"
-                                style="max-width: 170px; margin: 0 auto"
-                            >
-                                <div class="col-6">
-                                    <button
-                                        type="button"
-                                        class="btn btn-secondary border-radius-100 btn-block confirmation-btn"
-                                        data-dismiss="modal"
-                                    >
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                    NO
-                                </div>
-                                <div class="col-6">
-                                    <button
-                                        type="button"
-                                        class="btn btn-primary border-radius-100 btn-block confirmation-btn"
-                                        data-dismiss="modal"
-                                    >
-                                        <i class="fa fa-check"></i>
-                                    </button>
-                                    YES
+                        <form method="post" action="{% url 'actions_roles' %}">
+                            {% csrf_token %}
+                            <div class="modal-body text-center font-18">
+                                <h4 class="padding-top-30 mb-30 weight-500">
+                                    Are you sure you want to disable?
+                                    <input hidden type="text" id="disable_divcont" name="disable_data">
+                                </h4>
+                                <div
+                                    class="padding-bottom-30 row"
+                                    style="max-width: 170px; margin: 0 auto"
+                                >
+                                    <div class="col-6">
+                                        <button
+                                            type="button"
+                                            class="btn btn-secondary border-radius-100 btn-block confirmation-btn"
+                                            data-dismiss="modal"
+                                        >
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                        NO
+                                    </div>
+                                    <div class="col-6">
+                                        <button
+                                            type="submit"
+                                            class="btn btn-primary border-radius-100 btn-block confirmation-btn"
+                                           
+                                        >
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                        YES
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
       
+            
 
-    <div class="footer-wrap pd-20 mb-20 card-box">
-        DeskApp - Bootstrap 4 Admin Template By
-        <a href="https://github.com/dropways" target="_blank"
-            >Ankit Hingarajiya</a
-        >
-    </div>
-</div>
+<script>
+    $('.disable_btn').click(function(){
+        var x_id = $(this).attr('data-id')
+        $('#disable_divcont').val(x_id)
+    })
+    $('.enable_btn').click(function(){
+        var x_id = $(this).attr('data-id')
+        $('#enable_divcont').val(x_id)
+    })
+</script>
 {% endblock content %}
