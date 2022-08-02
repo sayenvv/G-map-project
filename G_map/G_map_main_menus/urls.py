@@ -26,6 +26,8 @@ urlpatterns = [
         path('',Roles_View.as_view(),name='roles_view' ),
         path('edit-roles/<str:slug>',EditRoles_View.as_view(),name='edit_roles' ),
         path('actions-roles',RolesAction_View.as_view(),name='actions_roles' ),
+        # permissions
+        path('set-permissions/<str:slug>',SetPermissions_View.as_view(),name='set_permissions' ),
     ])),
 
 # service path
@@ -50,6 +52,26 @@ urlpatterns = [
     path('Designation/',include([
         path('',DesignationView.as_view(),name='designation' ),
         path('add-designation',Add_DesignationView.as_view(),name='add_designation' ),
+        path('edit-designation/<str:slug>',Edit_DesignationView.as_view(),name='edit_designation' ),
+        path('assign-department/<str:slug>',Assign_DepartmentView.as_view(),name='assign_department' ),
+        path('actions-designation',DesignationAction_View.as_view(),name='actions_designation' ),
         
     ])),
+# vendor path
+    path('Vendor/',include([
+        path('',VendorView.as_view(),name='vendor' ),
+        path('add-vendor',Add_VendorView.as_view(),name='add_vendor' ),
+        path('edit-vendor/<str:slug>',Edit_VendorView.as_view(),name='edit_vendor' ),
+        path('actions-vendor',VendorAction_View.as_view(),name='actions_vendor' ),
+        
+    ])),
+# questionnair path
+    path('Questionnair/',include([
+        path('',QuestionnairView.as_view(),name='questionnair' ),
+        path('add-questionnair',Add_QuestionnairView.as_view(),name='add_questionnair' ),
+        path('edit-vendor/<str:slug>',Edit_VendorView.as_view(),name='edit_vendor' ),
+        path('actions-vendor',VendorAction_View.as_view(),name='actions_vendor' ),
+        
+    ])),
+
 ]

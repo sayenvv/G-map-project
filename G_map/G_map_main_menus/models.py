@@ -69,6 +69,12 @@ class Department_Model(LifecycleModelMixin,models.Model):
                 ('Active','Active'),
                 ('Inactive','Inactive')
             ),default='Active')
+    
+    class Meta:
+        db_table = 'department'
+
+    def __str__(self):
+        return self.department_name
 
     @receiver(post_save, sender='G_map_main_menus.Department_Model')
     def save_slug(sender, *args, **kwargs):
@@ -78,8 +84,41 @@ class Department_Model(LifecycleModelMixin,models.Model):
         instance.update(slug_field=slug_field)
 
 class Designation_Model(models.Model):
+    slug_field = models.SlugField(max_length=256,blank=True)
     designation = models.CharField(max_length=100)
     department = models.ManyToManyField(Department_Model,blank=True)
+    status = models.CharField(max_length=180,choices=(
+                ('Active','Active'),
+                ('Inactive','Inactive')
+            ),default='Active')
+
+    @receiver(post_save, sender='G_map_main_menus.Designation_Model')
+    def save_slug(sender, *args, **kwargs):
+        instance = Designation_Model.objects.filter(pk=kwargs['instance'].id)
+        value = str(instance.first().designation)+" "+str(instance.first().id)
+        slug_field = slugify(value, allow_unicode=True)
+        instance.update(slug_field=slug_field)
+
+class Vendor_Model(models.Model):
+    slug_field = models.SlugField(max_length=150,blank=True)
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    phone = models.CharField(max_length=20)
+    status = models.CharField(max_length=180,choices=(
+                ('Active','Active'),
+                ('Inactive','Inactive')
+            ),default='Active')
+
+    @receiver(post_save, sender='G_map_main_menus.Vendor_Model')
+    def save_slug(sender, *args, **kwargs):
+        instance = Vendor_Model.objects.filter(pk=kwargs['instance'].id)
+        value = str(instance.first().name)+" "+str(instance.first().id)
+        slug_field = slugify(value, allow_unicode=True)
+        instance.update(slug_field=slug_field)
+
+class Questionnair_Model(models.Model):
+    service_type = models.ForeignKey(Service_Type_Model,on_delete=models.CASCADE)
+    question = models.TextField()
     status = models.CharField(max_length=180,choices=(
                 ('Active','Active'),
                 ('Inactive','Inactive')

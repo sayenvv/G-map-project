@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-{% block title %}Roles{% endblock title %}
+{% block title %}Add Vendor{% endblock title %}
 {% block content %}
 
 <div class="min-height-200px">
@@ -38,8 +38,24 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>{{form.service.label}}</label>
-                            {{form.service}}
+                            <label>{{form.name.label}}</label>
+                            {{form.name}}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{form.email.label}}</label><br>
+                            {{form.email}}
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>{{form.phone.label}}</label>
+                            {{form.phone}}
+                            
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -56,14 +72,6 @@
                         </div>
                     </div>
                     
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>{{form.scope_of_work.label}}</label><br>
-                            {{form.scope_of_work}}
-                        </div>
-                    </div>
                 </div>
             </div>
             

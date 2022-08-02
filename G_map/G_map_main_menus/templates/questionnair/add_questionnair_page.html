@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-{% block title %}Roles{% endblock title %}
+{% block title %}Add Designation{% endblock title %}
 {% block content %}
 
 <div class="min-height-200px">
@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>Service Type</h4>
+                    <h4>Designation</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
@@ -15,7 +15,7 @@
                             <a href="{{ request.META.HTTP_REFERER }}">Back</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Add service type
+                            Add Designation
                         </li>
                     </ol>
                 </nav>
@@ -35,42 +35,39 @@
                 </div>
             </div>
             <div class="card-body">
+                {% for form in form %}
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label>{{form.service.label}}</label>
-                            {{form.service}}
+                            <label>{{form.service_type.label}}</label>
+                            {{form.service_type}}
                         </div>
                     </div>
+                    
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>{{form.status.label}}</label>
-                            <select name="status" class="form-control form-control-sm" id="id_status" disabled>
-                                <option value="Active" selected="">Active</option>
-                              
-                                <option value="Inactive">Inactive</option>
-                              
-                              </select>
-                            {{form.status.as_hidden}}
+                            {{form.status}}
                             
                         </div>
                     </div>
                     
                 </div>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <label>{{form.scope_of_work.label}}</label><br>
-                            {{form.scope_of_work}}
+                            <label>{{form.question.label}}</label>
+                            {{form.question}}
+                            
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
             
         
             <div class="card-footer" style="background-color:#fff;">
                 <div class="form-group" >
-                    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-danger btn-sm" style="float: left;">Cancel</a>
                     <button type="submit" class="btn btn-secondary btn-sm" style="float: right;">Submit</button>
                 </div>
                 

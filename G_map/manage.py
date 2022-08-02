@@ -2,7 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
-virtual_env = 'G_map.settings.base'
+virtual_env = 'G_map.settings.dev'
 
 def main():
     """Run administrative tasks."""

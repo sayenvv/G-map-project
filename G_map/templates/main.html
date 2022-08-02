@@ -4,7 +4,7 @@
 	<head>
 		<!-- Basic Page Info -->
 		<meta charset="utf-8" />
-		<title>G-map|{% block title %}{% endblock title %}</title>
+		<title>G-map | {% block title %}{% endblock title %}</title>
 
 		<!-- Site favicon -->
 		<link
@@ -24,6 +24,9 @@
 			sizes="16x16"
 			href="/static/vendors/images/favicon-16x16.png"
 		/>
+		<!-- selct 2 -->
+
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> 
 
 		<!-- Mobile Specific Metas -->
 		<meta
@@ -71,6 +74,36 @@
         </script>
 		<!-- jquery cdn -->
 		<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+		
+		<style>
+            .select2-container{width:100%!important}
+            
+			.select2-container--default .select2-selection--multiple .select2-selection__choice{
+				background-color: #e4e4e4;
+				border: 1px solid #aaa;
+				color: black;
+				border-radius: 4px;
+				cursor: default;
+				float: left;
+				margin-right: 5px;
+				margin-top: 5px;
+				padding-left: 30px !important;
+				
+			}
+			.select2-container .select2-selection--multiple .select2-selection__rendered{
+				display: block !important;
+			}
+			.select2-container--default .select2-selection--multiple .select2-selection__choice__remove{
+				color: black !important;
+			}
+        </style>
+        <script>
+            $(document).ready(function () {
+              $('#id_department').select2();
+            });
+          </script>
+
+		
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
@@ -493,12 +526,12 @@
 					<ul id="accordion-menu">
 						
                         <li>
-							<a href="{% url 'dashboard' %}" class="dropdown-toggle no-arrow">
+							<a href="{% url 'dashboard' %}" class="dropdown-toggle no-arrow {% if is_dashboard %}active{% endif %}">
 								<span class="micon bi bi-house"></span><span class="mtext">Dashboard</span>
 							</a>
 						</li>
                         <li>
-							<a href="{% url 'menus' %}" class="dropdown-toggle no-arrow">
+							<a href="{% url 'menus' %}" class="dropdown-toggle no-arrow {% if is_menu %}active{% endif %}">
 								<span class="micon bi bi-menu-button-wide-fill"></span><span class="mtext">Menu</span>
 							</a>
 						</li>
@@ -752,9 +785,13 @@
 		<script src="/static/src/plugins/sweetalert2/sweet-alert.init.js"></script>
 		<!-- Datatable Setting js -->
 		<script src="/static/vendors/scripts/datatable-setting.js"></script>
+		<script src="/static/src/custom_scripts/permissions.js" type="text/javascript"></script>
 		<!-- toastr -->
 		<link rel="stylesheet" href="/static/vendors/toastr/toastr.min.css">
+		<!-- select 2 -->
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 		<!-- Google Tag Manager (noscript) -->
+		
 		<noscript
 			><iframe
 				src="https://www.googletagmanager.com/ns.html?id=GTM-NXZMQSS"

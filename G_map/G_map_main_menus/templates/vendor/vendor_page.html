@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-{% block title %}Designation{% endblock title %}
+{% block title %}Vendor{% endblock title %}
 {% block content %}
 
 <div class="min-height-200px">
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>Designation</h4>
+                    <h4>Vendor</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
@@ -16,13 +16,13 @@
                             <a href="{{ request.META.HTTP_REFERER }}">Back</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Designation
+                            Vendor
                         </li>
                     </ol>
                 </nav>
             </div>
             <div class="col-md-6 col-sm-12 text-right">
-                <a href="{% url 'add_designation' %}" class="btn btn-primary btn-sm">Add Designation</a>
+                <a href="{% url 'add_vendor' %}" class="btn btn-primary btn-sm">Add Vendor</a>
             </div>
         </div>
     </div>
@@ -39,20 +39,24 @@
     >
         <thead>
             <tr>
-                <th class="table-plus datatable-nosort" style="width: 10%;">Sl no</th>
-                <th style="width: 30%;">Designation</th>
+                <th class="table-plus datatable-nosort" style="width: 5%;">Sl no</th>
+                <th style="width: 20%;">Name</th>
+                <th style="width: 20%;">Email</th>
+                <th style="width: 20%;">Phone</th>
                 <th style="width: 10%;">Status</th>
-                <th style="width: 30%;text-align: center;">Actions</th>
+                <th style="width: 25%;text-align: center;">Actions</th>
                 
             </tr>
         </thead>
         <tbody>
             {% for i in data %}
             <tr>
-                <td class="table-plus" style="width: 10%;">{{forloop.counter}}</td>
-                <td style="width: 30%;">{{i.designation}}</td>
+                <td class="table-plus" style="width: 5%;">{{forloop.counter}}</td>
+                <td style="width: 20%;">{{i.name}}</td>
+                <td style="width: 20%;">{{i.email}}</td>
+                <td style="width: 20%;">{{i.phone}}</td>
                 <td style="width: 10%;"><span class="badge badge-{% if i.status == 'Active' %}success{% else %}danger{% endif %}">{{i.status}}</span></td>
-                <td style="width: 30%;">
+                <td style="width: 25%;">
                     {% if i.status == 'Active' %}
                     <button type="button" class="btn btn-outline-secondary btn-sm disable_btn" style="float: right;" data-toggle="modal" data-id="{{i.id}}"
                     data-target="#confirmation-modal-disable">Disable</button>
@@ -60,8 +64,7 @@
                     <button type="button" class="btn btn-outline-secondary btn-sm enable_btn" style="float: right;" data-toggle="modal" data-id="{{i.id}}"
                     data-target="#confirmation-modal-enable">Enable</button>
                     {% endif %}
-                    <a href="{% url 'edit_designation' i.slug_field %}" class="btn btn-outline-secondary btn-sm mr-2" style="float: right;">Edit</a>
-                    <a href="{% url 'assign_department' i.slug_field %}" class="btn btn-secondary btn-sm mr-2" style="float: right;">Assign department</a>
+                    <a href="{% url 'edit_vendor' i.slug_field %}" class="btn btn-outline-secondary btn-sm mr-2" style="float: right;">Edit</a>
                     
                 </td>
                 
@@ -88,7 +91,7 @@
         role="document"
     >
         <div class="modal-content">
-            <form method="post" action="{% url 'actions_designation' %}">
+            <form method="post" action="{% url 'actions_vendor' %}">
                 {% csrf_token %}
                 <div class="modal-body text-center font-18">
                     <h4 class="padding-top-30 mb-30 weight-500">
@@ -143,7 +146,7 @@
         role="document"
     >
         <div class="modal-content">
-            <form method="post" action="{% url 'actions_designation' %}">
+            <form method="post" action="{% url 'actions_vendor' %}">
                 {% csrf_token %}
                 <div class="modal-body text-center font-18">
                     <h4 class="padding-top-30 mb-30 weight-500">

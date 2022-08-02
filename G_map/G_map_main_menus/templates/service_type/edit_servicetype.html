@@ -45,7 +45,13 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label>{{form.status.label}}</label>
-                            {{form.status}}
+                            <select name="status" class="form-control form-control-sm" id="id_status" disabled>
+                                <option value="Active" {% if form.status.value == 'Active' %}selected{% endif %}>Active</option>
+                              
+                                <option value="Inactive" {% if form.status.value == 'Inactive' %}selected{% endif %}>Inactive</option>
+                              
+                              </select>
+                            {{form.status.as_hidden}}
                             
                         </div>
                     </div>
@@ -64,6 +70,7 @@
         
             <div class="card-footer" style="background-color:#fff;">
                 <div class="form-group" >
+                    <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-danger btn-sm" style="float: left;">Cancel</a>
                     <button type="submit" class="btn btn-secondary btn-sm" style="float: right;">Submit</button>
                 </div>
                 

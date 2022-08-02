@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-{% block title %}Designation{% endblock title %}
+{% block title %}Questionnair{% endblock title %}
 {% block content %}
 
 <div class="min-height-200px">
@@ -8,7 +8,7 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <div class="title">
-                    <h4>Designation</h4>
+                    <h4>Questionnair</h4>
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb">
@@ -16,13 +16,13 @@
                             <a href="{{ request.META.HTTP_REFERER }}">Back</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Designation
+                            Questionnair
                         </li>
                     </ol>
                 </nav>
             </div>
             <div class="col-md-6 col-sm-12 text-right">
-                <a href="{% url 'add_designation' %}" class="btn btn-primary btn-sm">Add Designation</a>
+                <a href="{% url 'add_questionnair' %}" class="btn btn-primary btn-sm">Add Questionnair</a>
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@
         <thead>
             <tr>
                 <th class="table-plus datatable-nosort" style="width: 10%;">Sl no</th>
-                <th style="width: 30%;">Designation</th>
+                <th style="width: 30%;">Serivice Type</th>
                 <th style="width: 10%;">Status</th>
                 <th style="width: 30%;text-align: center;">Actions</th>
                 
@@ -50,7 +50,7 @@
             {% for i in data %}
             <tr>
                 <td class="table-plus" style="width: 10%;">{{forloop.counter}}</td>
-                <td style="width: 30%;">{{i.designation}}</td>
+                <td style="width: 30%;">{{i.service_type}}</td>
                 <td style="width: 10%;"><span class="badge badge-{% if i.status == 'Active' %}success{% else %}danger{% endif %}">{{i.status}}</span></td>
                 <td style="width: 30%;">
                     {% if i.status == 'Active' %}

@@ -1,10 +1,25 @@
 Django_messages_Main = {
     'roles_disabled' : 'Role disabled successfully',
+    'roles_added' : 'Role added successfully',
+    'roles_edited' : 'Role edited successfully',
     'roles_enabled' : 'Role enabled successfully',
     'service_added' : 'Service added successfully',
     'service_edited' : 'Service edited successfully',
     'service_disabled' : 'Service disabled successfully',
     'service_enabled' : 'Service enabled successfully',
     'department_added' : 'Department added successfully',
-    'department_edited' : 'Department edited successfully'
+    'department_edited' : 'Department edited successfully',
+    'designation_disabled' : 'Designation disabled successfully',
+    'designation_enabled' : 'Designation enabled successfully',
+    'vendor_disabled' : 'Vendor disabled successfully',
+    'vendor_enabled' : 'Vendor enabled successfully',
+    'vendor_edited' : 'Vendor edited successfully',
+    'vendor_added' : 'Vendor added successfully',
+    'department_assigned' : 'Department assigned successfully',
+    'designation_edited' : 'Designation edited successfully',
+    'designation_added' : 'Designation addded successfully',
+    'department_enabled' : 'Department enabled successfully',
+    'department_disabled' : 'Department disabled successfully',
+    'no_pernission' : "Access denied,you don't have permission to access ",
+    'permission_granded' : 'Permissions granded for role {}'
 }
